@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="nigar" class="az.example.Employee">
+        <constructor-arg name="lastName" value="Efendiyeva"/>
+        <constructor-arg name="firstName" value="Nigar"/>
+        <constructor-arg name="age" value="30"/>
+        <constructor-arg name="department" ref="hr"/>
+        <constructor-arg name="permissions">
+            <list>
+                <value>ADMIN</value>
+                <value>MODERATOR</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="emails" ref="nigarsEmails"/>
+    </bean>
+
+    <bean id="murad" class="az.example.Employee">
+        <property name="firstName" value="Murad"/>
+        <property name="lastName" value="Semedov"/>
+        <property name="age" value="31"/>
+        <property name="department" ref="it"/>
+        <property name="permissions" ref="list"/>
+        <property name="emails">
+            <map>
+                <entry key="personal" value="murad@mail.ru"/>
+                <entry key="work" value="murad@campany.net"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="it" class="az.example.Department">
+        <constructor-arg name="depName" value="IT"/>
+    </bean>
+
+    <bean id="hr" class="az.example.Department">
+        <constructor-arg name="depName" value="HR"/>
+    </bean>
+
+    <util:list id="list" >
+        <value>EDITOR</value>
+        <value>MODERATOR</value>
+    </util:list>
+
+    <util:map id="nigarsEmails">
+        <entry key="personal" value="nigar@gmail.com"/>
+        <entry key="work" value="nigar@company.com"/>
+        <entry key="education" value="nigar@edu.com"/>
+    </util:map>
+
+</beans>
